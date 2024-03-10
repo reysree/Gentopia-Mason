@@ -184,6 +184,7 @@ class SearchSinglePaper(BaseTool):
         self.title = title
         assert paper is not None
         self.results = [paper]
+        #print(self.results)
         ans = []
         for it in islice(self.results, top_k):
             ans.append(str({
@@ -194,6 +195,7 @@ class SearchSinglePaper(BaseTool):
                 "abstract": it['bib']['abstract'],
                 'url': it['pub_url'],
                 'citation': it['num_citations'],
+                'pdf': it['eprint_url']
                 }))
         if not ans:
             return "no further information available"

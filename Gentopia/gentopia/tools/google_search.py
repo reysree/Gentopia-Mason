@@ -1,6 +1,7 @@
 from typing import AnyStr
 from googlesearch import search
 from gentopia.tools.basetool import *
+import time
 
 
 class GoogleSearchArgs(BaseModel):
@@ -17,6 +18,7 @@ class GoogleSearch(BaseTool):
     args_schema: Optional[Type[BaseModel]] = GoogleSearchArgs
 
     def _run(self, query: AnyStr) -> str:
+        time.sleep(1)
         return '\n\n'.join([str(item) for item in search(query, advanced=True)])
 
     async def _arun(self, *args: Any, **kwargs: Any) -> Any:
